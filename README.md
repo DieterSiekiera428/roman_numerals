@@ -24,3 +24,10 @@ errors rather than being silently corrected.
 Both functions raise `RomanNumeralError`, a subclass of `ValueError`,
 for invalid values.  `from_int` raises `TypeError` for non-integers,
 and `to_int` raises `TypeError` for non-strings.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
